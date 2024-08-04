@@ -1,6 +1,8 @@
- const User = require ("./model");
+const User = require("./model");
 
- const signup = async (req, res) => {
+
+
+const signup = async (req, res) => {
   try {
     const { username, email, password } = req.body;
 
@@ -13,25 +15,19 @@
   }
 };
 
-
 const login = async (req, res) => {
   try {
-    const token = await jwt.sign({ id: req.user.id }, process.env.SECRET);
-
     const user = {
       id: req.user.id,
       username: req.user.username,
-      token: token,
     };
-    res.status(201).json({ message: "success", user: req.user });
+    res.status(201).json({ message: "You have logged in succesfully", user });
   } catch (error) {
     res.status(500).json({ message: error.message, error: error });
   }
 };
 
-
-
 module.exports = {
-    signup,
-    login,
-}
+  signup,
+  login,
+};

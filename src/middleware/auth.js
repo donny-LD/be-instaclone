@@ -36,7 +36,6 @@ const comparePass = async (req, res, next) => {
     if (!isMatch) {
       return res.status(401).json({ message: "Incorrect password" });
     }
-
     req.user = user;
     next();
   } catch (error) {
